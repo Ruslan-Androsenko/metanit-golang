@@ -8,19 +8,25 @@ type person struct {
 }
 
 func main() {
-	//var tom person = person {"Tom", 24}
-	var alice person = person{age: 23, name: "Alice"}
-	var tom = person{name: "Tom", age: 24}
-	bob := person{name: "Bob", age: 31}
+	tom := person{name: "Tom", age: 22}
 
-	fmt.Println(alice)
-	fmt.Println(tom)
-	fmt.Println(bob)
-
-	fmt.Println("\nОбращение к полям")
-	fmt.Println(tom.name)
+	var tomPointer *person = &tom
+	tomPointer.age = 29
 	fmt.Println(tom.age)
 
-	tom.age = 38
-	fmt.Println(tom.name, tom.age)
+	(*tomPointer).age = 32
+	fmt.Println(tom.age)
+
+	fmt.Println("\nУказатели на безымянные объекты")
+	var alice *person = &person{name: "Alice", age: 23}
+	var bob *person = new(person)
+
+	fmt.Println(alice)
+	fmt.Println(bob)
+
+	fmt.Println("\nУказатель на поле объекта")
+	var agePointer *int = &tom.age
+
+	*agePointer = 35
+	fmt.Println(tom.age)
 }
