@@ -2,30 +2,18 @@ package main
 
 import "fmt"
 
-type mile int
-type kilometer int
-type library []string
+type person struct {
+	name string
+	age  int
+}
 
 func main() {
-	fmt.Println("Type mile")
-	var distance mile = 5
-	distanceToEnemy(distance)
+	//var tom person = person {"Tom", 24}
+	var alice person = person{age: 23, name: "Alice"}
+	var tom = person{name: "Tom", age: 24}
+	bob := person{name: "Bob", age: 31}
 
-	//var distance2 kilometer = 5
-	//distanceToEnemy(distance2)	! ошибка, передан аргумент другого типа
-
-	fmt.Println("\nType library")
-	var myLibrary library = library{"Book1", "Book2", "Book3"}
-	printBooks(myLibrary)
-}
-
-func distanceToEnemy(distance mile) {
-	fmt.Println("Расстояние до противника:")
-	fmt.Println(distance, "миль")
-}
-
-func printBooks(lib library) {
-	for _, value := range lib {
-		fmt.Println(value)
-	}
+	fmt.Println(alice)
+	fmt.Println(tom)
+	fmt.Println(bob)
 }
