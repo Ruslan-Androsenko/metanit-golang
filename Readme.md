@@ -30,4 +30,5 @@ go build hello.go
 [Структуры](https://metanit.com/go/tutorial/4.2.php)
 [Вложенные структуры](https://metanit.com/go/tutorial/4.3.php)
 [Методы](https://metanit.com/go/tutorial/4.4.php)
+[Методы указателей](https://metanit.com/go/tutorial/4.5.php)
 

@@ -9,8 +9,15 @@ type person struct {
 
 func main() {
 	var tom = person{name: "Tom", age: 24}
-	tom.print()
-	tom.eat("борщ с капустой, но не красный")
+	var tomPointer *person = &tom
+	fmt.Println("before:", tom.age)
+
+	tomPointer.updateAge(33)
+	fmt.Println("after:", tom.age)
+}
+
+func (p *person) updateAge(newAge int) {
+	(*p).age = newAge
 }
 
 func (p person) print() {
