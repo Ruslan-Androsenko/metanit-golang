@@ -31,4 +31,5 @@ go build hello.go
 * [Массивы](https://metanit.com/go/tutorial/2.8.php)
 * [Условные конструкции](https://metanit.com/go/tutorial/2.9.php)
 * [Циклы](https://metanit.com/go/tutorial/2.10.php)
+* [Функции и их параметры](https://metanit.com/go/tutorial/2.11.php)
 

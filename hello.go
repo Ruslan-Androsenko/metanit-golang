@@ -3,45 +3,47 @@ package main
 import "fmt"
 
 func main() {
-	var numbers = [10]int{1, -2, 3, -4, 5, -6, -7, 8, -9, 10}
-	var (
-		sum  = 0
-		prod = 1
-	)
+	hello()
 
-	var i = 1
-	for i < 10 {
-		fmt.Println(i * i)
-		i++
-	}
+	add(4, 5, 3.4, 5.6, 1.2)
+	add(20, 6, 3.14, 9.81, 5.76)
 
-	fmt.Println()
-	for i := 1; i < 10; i++ {
-		for j := 1; j < 10; j++ {
-			fmt.Print(i*j, "\t")
-		}
-		fmt.Println()
-	}
+	var a = 8
+	fmt.Println("\na before: ", a)
+	increment(a)
+	fmt.Println("a before: ", a)
 
-	fmt.Println()
-	for index, item := range numbers {
-		fmt.Println(index, ").", item)
-	}
+	sum(1, 2, 3)
+	sum(1, 2, 3, 4)
+	sum(5, 6, 7, 2, 3)
 
-	for _, item := range numbers {
-		if item < 0 {
-			continue
-		}
+	var nums = []int{5, 6, 7, 2, 3}
+	sum(nums...)
+}
 
-		sum += item
-	}
+func hello() {
+	fmt.Println("Hello World!")
+}
 
-	for i := 0; i < len(numbers); i++ {
-		if numbers[i] != 0 {
-			prod *= numbers[i]
-		}
+func add(x, y int, a, b, c float32) {
+	var z = x + y
+	var d = a + b + c
+
+	fmt.Println("\nx + y = ", z)
+	fmt.Println("a + b + c = ", d)
+}
+
+func sum(numbers ...int) {
+	var sum = 0
+	for _, number := range numbers {
+		sum += number
 	}
 
 	fmt.Println("\nsum: ", sum)
-	fmt.Println("prod: ", prod)
+}
+
+func increment(x int) {
+	fmt.Println("x before: ", x)
+	x += 20
+	fmt.Println("x after: ", x)
 }
