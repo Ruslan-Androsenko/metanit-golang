@@ -29,4 +29,5 @@ go build hello.go
 * [Структура программы](https://metanit.com/go/tutorial/2.1.php)
 * [Переменные](https://metanit.com/go/tutorial/2.2.php)
 * [Массивы](https://metanit.com/go/tutorial/2.8.php)
+* [Условные конструкции](https://metanit.com/go/tutorial/2.9.php)
 

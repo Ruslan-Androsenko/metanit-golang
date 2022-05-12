@@ -3,10 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	var numbers = [5]int{1, 2, 3, 4, 5}
-	fmt.Println(numbers)
+	a := 6
+	b := 7
 
-	colors := [3]string{2: "blue", 0: "red", 1: "green"}
-	fmt.Println(colors[2]) // blue
-	fmt.Println(colors[1]) // green
+	if a < b {
+		fmt.Println("a is less than b")
+	} else {
+		fmt.Println("a is more than b")
+	}
+
+	fmt.Println()
+	a = 8
+	b = 8
+
+	if a < b {
+		fmt.Println("a меньше b")
+	} else if a > b {
+		fmt.Println("a больше b")
+	} else {
+		fmt.Println("a равно b")
+	}
 }
