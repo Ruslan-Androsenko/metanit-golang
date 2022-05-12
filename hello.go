@@ -3,18 +3,45 @@ package main
 import "fmt"
 
 func main() {
-	a := 87
+	var numbers = [10]int{1, -2, 3, -4, 5, -6, -7, 8, -9, 10}
+	var (
+		sum  = 0
+		prod = 1
+	)
 
-	switch a {
-	case 9:
-		fmt.Println("a = 9")
-	case 8:
-		fmt.Println("a = 8")
-	case 7:
-		fmt.Println("a = 7")
-	case 6, 5, 4:
-		fmt.Println("a = 6 или 5 или 4, но это не точно")
-	default:
-		fmt.Println("значение переменной a не определено")
+	var i = 1
+	for i < 10 {
+		fmt.Println(i * i)
+		i++
 	}
+
+	fmt.Println()
+	for i := 1; i < 10; i++ {
+		for j := 1; j < 10; j++ {
+			fmt.Print(i*j, "\t")
+		}
+		fmt.Println()
+	}
+
+	fmt.Println()
+	for index, item := range numbers {
+		fmt.Println(index, ").", item)
+	}
+
+	for _, item := range numbers {
+		if item < 0 {
+			continue
+		}
+
+		sum += item
+	}
+
+	for i := 0; i < len(numbers); i++ {
+		if numbers[i] != 0 {
+			prod *= numbers[i]
+		}
+	}
+
+	fmt.Println("\nsum: ", sum)
+	fmt.Println("prod: ", prod)
 }
