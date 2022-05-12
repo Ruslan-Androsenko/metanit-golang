@@ -3,13 +3,19 @@ package main
 import "fmt"
 
 func main() {
-	d := 5
-	fmt.Println("d before:", d)
+	p1 := createPointer(7)
+	fmt.Println("p1:", *p1)
 
-	changeValue(&d)
-	fmt.Println("d after:", d)
+	p2 := createPointer(10)
+	fmt.Println("p1:", *p2)
+
+	p3 := createPointer(28)
+	fmt.Println("p1:", *p3)
 }
 
-func changeValue(x *int) {
-	*x = (*x) * (*x)
+func createPointer(x int) *int {
+	p := new(int)
+	*p = x
+
+	return p
 }
