@@ -3,44 +3,30 @@ package main
 import "fmt"
 
 func main() {
-	var users = []string{"Tom", "Alice", "Kate"}
-	fmt.Println(users)
-	fmt.Println(users[2]) // Kate
-
-	fmt.Println("\nChange item value")
-	users[2] = "Katherine"
-
-	for _, value := range users {
-		fmt.Println(value)
+	var people = map[string]int{
+		"Tom":   1,
+		"Bob":   2,
+		"Sam":   4,
+		"Alice": 8,
 	}
 
-	fmt.Println("\nFunction make")
-	var usersTest []string = make([]string, 3)
-	usersTest[0] = "Tom"
-	usersTest[1] = "Alice"
-	usersTest[2] = "Bob"
-	fmt.Println(usersTest)
+	fmt.Println(people)
+	fmt.Println(people["Alice"]) // 8
+	fmt.Println(people["Bob"])   // 2
 
-	fmt.Println("\nAdding items to slice")
-	users = append(users, "Bob")
+	people["Bob"] = 32
+	fmt.Println(people["Bob"]) // 32
 
-	for _, value := range users {
-		fmt.Println(value)
+	fmt.Println("\nCheck item by key")
+	// Проверка наличия элемента по определенному ключу
+	if val, ok := people["Tom"]; ok {
+		fmt.Println(val)
+	} else {
+		fmt.Println("Item is not found.")
 	}
 
-	fmt.Println("\nOperator the slice")
-	// Исходный массив
-	initialUsers := [8]string{"Bob", "Alice", "Kate", "Sam", "Tom", "Paul", "Mike", "Robert"}
-	users1 := initialUsers[2:6] // с 3-го по 6-й
-	users2 := initialUsers[:4]  // с 0-го по 4-й
-	users3 := initialUsers[3:]  // с 4-го до конца
-
-	fmt.Println(users1)
-	fmt.Println(users2)
-	fmt.Println(users3)
-
-	fmt.Println("\nRemove item from slice")
-	var n = 3
-	users = append(initialUsers[:n], initialUsers[n+1:]...)
-	fmt.Println(users)
+	fmt.Println("\nForeach for map.")
+	for key, value := range people {
+		fmt.Println(key, value)
+	}
 }
