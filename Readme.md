@@ -27,4 +27,5 @@ go build hello.go
 
 ### Глава 3. Указатели 
 * [Что такое указатели](https://metanit.com/go/tutorial/3.1.php)
+* [Указатели и функции](https://metanit.com/go/tutorial/3.2.php)
 
