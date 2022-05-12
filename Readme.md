@@ -26,9 +26,9 @@ go build hello.go
 # Изучаемые разделы учебника на Metanit.com
 
 ### Глава 4. Производные типы 
-[Объявление типов](https://metanit.com/go/tutorial/4.1.php)
-[Структуры](https://metanit.com/go/tutorial/4.2.php)
-[Вложенные структуры](https://metanit.com/go/tutorial/4.3.php)
-[Методы](https://metanit.com/go/tutorial/4.4.php)
-[Методы указателей](https://metanit.com/go/tutorial/4.5.php)
+* [Объявление типов](https://metanit.com/go/tutorial/4.1.php)
+* [Структуры](https://metanit.com/go/tutorial/4.2.php)
+* [Вложенные структуры](https://metanit.com/go/tutorial/4.3.php)
+* [Методы](https://metanit.com/go/tutorial/4.4.php)
+* [Методы указателей](https://metanit.com/go/tutorial/4.5.php)
 
