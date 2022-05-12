@@ -34,4 +34,5 @@ go build hello.go
 * [Функции и их параметры](https://metanit.com/go/tutorial/2.11.php)
 * [Возвращение результата из функции](https://metanit.com/go/tutorial/2.12.php)
 * [Тип функции](https://metanit.com/go/tutorial/2.15.php)
+* [Анонимные функции](https://metanit.com/go/tutorial/2.16.php)
 
