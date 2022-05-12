@@ -25,5 +25,6 @@ go build hello.go
 
 # Изучаемые разделы учебника на Metanit.com
 
-### Глава 1. Введение в язык Go [Первая программа](https://metanit.com/go/tutorial/1.2.php)
+### Глава 2. Основы языка Go 
+* [Структура программы](https://metanit.com/go/tutorial/2.1.php)
 
