@@ -29,4 +29,5 @@ go build hello.go
 [Объявление типов](https://metanit.com/go/tutorial/4.1.php)
 [Структуры](https://metanit.com/go/tutorial/4.2.php)
 [Вложенные структуры](https://metanit.com/go/tutorial/4.3.php)
+[Методы](https://metanit.com/go/tutorial/4.4.php)
 
