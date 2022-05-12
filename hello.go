@@ -3,47 +3,28 @@ package main
 import "fmt"
 
 func main() {
-	hello()
+	var a = add(4, 5)
+	var b = add(20, 6)
 
-	add(4, 5, 3.4, 5.6, 1.2)
-	add(20, 6, 3.14, 9.81, 5.76)
+	fmt.Println(a)
+	fmt.Println(b)
 
-	var a = 8
-	fmt.Println("\na before: ", a)
-	increment(a)
-	fmt.Println("a before: ", a)
-
-	sum(1, 2, 3)
-	sum(1, 2, 3, 4)
-	sum(5, 6, 7, 2, 3)
-
-	var nums = []int{5, 6, 7, 2, 3}
-	sum(nums...)
+	var age, name = add3(4, 5, "Tom", "Simpson")
+	fmt.Println("\nage: ", age, "\nname: ", name)
 }
 
-func hello() {
-	fmt.Println("Hello World!")
+func add(x, y int) int {
+	return x + y
 }
 
-func add(x, y int, a, b, c float32) {
-	var z = x + y
-	var d = a + b + c
-
-	fmt.Println("\nx + y = ", z)
-	fmt.Println("a + b + c = ", d)
+func add2(x, y int) (z int) {
+	z = x + y
+	return
 }
 
-func sum(numbers ...int) {
-	var sum = 0
-	for _, number := range numbers {
-		sum += number
-	}
+func add3(x, y int, firstName, lastName string) (int, string) {
+	var z int = x + y
+	var fullName = firstName + " " + lastName
 
-	fmt.Println("\nsum: ", sum)
-}
-
-func increment(x int) {
-	fmt.Println("x before: ", x)
-	x += 20
-	fmt.Println("x after: ", x)
+	return z, fullName
 }

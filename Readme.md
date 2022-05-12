@@ -32,4 +32,5 @@ go build hello.go
 * [Условные конструкции](https://metanit.com/go/tutorial/2.9.php)
 * [Циклы](https://metanit.com/go/tutorial/2.10.php)
 * [Функции и их параметры](https://metanit.com/go/tutorial/2.11.php)
+* [Возвращение результата из функции](https://metanit.com/go/tutorial/2.12.php)
 
