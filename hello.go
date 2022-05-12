@@ -3,25 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Hello Go!")
+	var numbers = [5]int{1, 2, 3, 4, 5}
+	fmt.Println(numbers)
 
-	var (
-		name string = "Tom"
-		age  int    = 27
-	)
-
-	fmt.Println("name:", name) // Tom
-	fmt.Println("age:", age)   // 27
-
-	const pi float64 = 3.1415
-	fmt.Println("pi:", pi)
-
-	age++
-	fmt.Println("age:", age)
-
-	var nameTwo string = "Pol"
-	var ageTwo int = 32
-
-	fmt.Println("nameTwo:", nameTwo)
-	fmt.Println("ageTwo:", ageTwo)
+	colors := [3]string{2: "blue", 0: "red", 1: "green"}
+	fmt.Println(colors[2]) // blue
+	fmt.Println(colors[1]) // green
 }
