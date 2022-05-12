@@ -3,33 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("factorial")
-	fmt.Println(factorial(4)) // 24
-	fmt.Println(factorial(5)) // 120
-	fmt.Println(factorial(6)) // 720
+	defer finish()
+	fmt.Println("Program has been started")
+	fmt.Println("Program is working")
 
-	fmt.Println("\nfibbonachi")
-	fmt.Println(fibbonachi(4)) // 3
-	fmt.Println(fibbonachi(5)) // 4
-	fmt.Println(fibbonachi(6)) // 8
+	fmt.Println("\nProgram in progress operation by division")
+	fmt.Println(divide(15, 5))
+	fmt.Println(divide(4, 0))
+	fmt.Println("Program divide has been finished")
 }
 
-func factorial(n uint) uint {
-	if n == 0 {
-		return 1
-	}
-
-	return n * factorial(n-1)
+func finish() {
+	fmt.Println("Program has been finished")
 }
 
-func fibbonachi(n uint) uint {
-	if n == 0 {
-		return 0
+func divide(x, y float64) float64 {
+	if y == 0 {
+		panic("Division by zero!")
 	}
 
-	if n == 1 {
-		return 1
-	}
-
-	return fibbonachi(n-1) + fibbonachi(n-2)
+	return x / y
 }
