@@ -25,5 +25,6 @@ go build hello.go
 
 # Изучаемые разделы учебника на Metanit.com
 
-### Глава 1. Введение в язык Go [Первая программа](https://metanit.com/go/tutorial/1.2.php)
+### Глава 4. Производные типы 
+[Объявление типов](https://metanit.com/go/tutorial/4.1.php)
 
