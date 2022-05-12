@@ -3,19 +3,18 @@ package main
 import "fmt"
 
 func main() {
-	var x int = 4
-	var p *int
-
-	p = &x
-	fmt.Println("Address:", p)
-	fmt.Println("Value:", *p)
-
-	*p = 25
-	fmt.Println(x)
-
-	f := 2.3
-	pf := &f
-
+	// Empty pointer
+	var pf *float64
 	fmt.Println("Address:", pf)
-	fmt.Println("Value:", *pf)
+
+	if pf != nil {
+		fmt.Println("Value:", *pf)
+	}
+
+	// Dynamic object
+	p := new(int)
+	fmt.Println("value:", *p)
+
+	*p = 8
+	fmt.Println("value:", *p)
 }
