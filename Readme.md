@@ -27,4 +27,5 @@ go build hello.go
 
 ### Глава 2. Основы языка Go 
 * [Структура программы](https://metanit.com/go/tutorial/2.1.php)
+* [Переменные](https://metanit.com/go/tutorial/2.2.php)
 
