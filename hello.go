@@ -16,4 +16,11 @@ func main() {
 	fmt.Println(alice)
 	fmt.Println(tom)
 	fmt.Println(bob)
+
+	fmt.Println("\nОбращение к полям")
+	fmt.Println(tom.name)
+	fmt.Println(tom.age)
+
+	tom.age = 38
+	fmt.Println(tom.name, tom.age)
 }
