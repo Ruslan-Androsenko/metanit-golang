@@ -8,22 +8,22 @@ type contact struct {
 }
 
 type person struct {
-	name        string
-	age         int
-	contactInfo contact
+	name string
+	age  int
+	contact
 }
 
 func main() {
 	var tom = person{
 		name: "Tom",
 		age:  24,
-		contactInfo: contact{
+		contact: contact{
 			email: "tom@gmail.com",
 			phone: "+1234567899",
 		},
 	}
-	tom.contactInfo.email = "supertom@gmail.com"
+	tom.email = "supertom@gmail.com"
 
-	fmt.Println(tom.contactInfo.email)
-	fmt.Println(tom.contactInfo.phone)
+	fmt.Println(tom.email)
+	fmt.Println(tom.phone)
 }
