@@ -3,7 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	f := func(x, y int) int { return x + y }
-	fmt.Println(f(3, 4)) // 7
-	fmt.Println(f(6, 7)) // 13
+	action(10, 25, func(x int, y int) int { return x + y }) // 35
+	action(5, 6, func(x int, y int) int { return x * y })   // 30
+}
+
+func action(n1 int, n2 int, operation func(int, int) int) {
+	result := operation(n1, n2)
+	fmt.Println(result)
 }
