@@ -3,24 +3,36 @@ package main
 import "fmt"
 
 func main() {
-	action(10, 25, add)    // 35
-	action(5, 6, multiply) // 30
+	f := selectFn(1)
+	fmt.Println(f(3, 4)) // 7
 
-	slice := []int{-2, 4, 3, -1, 7, -4, 23}
+	f = selectFn(3)
+	fmt.Println(f(3, 4)) // 12
 
-	sumOfEvens := sum(slice, isEven) // Сумма четных чисел
-	fmt.Println(sumOfEvens)          // -2
-
-	sumOfPositive := sum(slice, isPositive) // Сумма положительных чисел
-	fmt.Println(sumOfPositive)              // 37
+	f = selectFn(2)
+	fmt.Println(f(4, 3)) // 1
 }
 
 func add(x int, y int) int {
 	return x + y
 }
 
+func subtract(x int, y int) int {
+	return x - y
+}
+
 func multiply(x int, y int) int {
 	return x * y
+}
+
+func selectFn(n int) func(int, int) int {
+	if n == 1 {
+		return add
+	} else if n == 2 {
+		return subtract
+	} else {
+		return multiply
+	}
 }
 
 func action(n1 int, n2 int, operation func(int, int) int) {
