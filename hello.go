@@ -29,4 +29,12 @@ func main() {
 	for key, value := range people {
 		fmt.Println(key, value)
 	}
+
+	// Добавление элементов в отображение
+	people["Kate"] = 128
+	fmt.Println(people)
+
+	// Удаление элемента из отображения
+	delete(people, "Bob")
+	fmt.Println(people)
 }
