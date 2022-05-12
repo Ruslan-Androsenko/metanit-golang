@@ -37,4 +37,5 @@ go build hello.go
 * [Анонимные функции](https://metanit.com/go/tutorial/2.16.php)
 * [Рекурсивные функции](https://metanit.com/go/tutorial/2.17.php)
 * [defer и panic](https://metanit.com/go/tutorial/2.18.php)
+* [Срезы](https://metanit.com/go/tutorial/2.13.php)
 
