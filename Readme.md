@@ -33,4 +33,5 @@ go build hello.go
 * [Циклы](https://metanit.com/go/tutorial/2.10.php)
 * [Функции и их параметры](https://metanit.com/go/tutorial/2.11.php)
 * [Возвращение результата из функции](https://metanit.com/go/tutorial/2.12.php)
+* [Тип функции](https://metanit.com/go/tutorial/2.15.php)
 

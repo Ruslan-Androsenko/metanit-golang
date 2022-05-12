@@ -3,28 +3,25 @@ package main
 import "fmt"
 
 func main() {
-	var a = add(4, 5)
-	var b = add(20, 6)
+	// var f func(int, int) int = add
+	f := add
+	fmt.Println("sum:", f(3, 4))
 
-	fmt.Println(a)
-	fmt.Println(b)
+	f = multiply
+	fmt.Println("multiply:", f(3, 4))
 
-	var age, name = add3(4, 5, "Tom", "Simpson")
-	fmt.Println("\nage: ", age, "\nname: ", name)
+	var f1 func(string) = display
+	f1("hello")
 }
 
-func add(x, y int) int {
+func add(x int, y int) int {
 	return x + y
 }
 
-func add2(x, y int) (z int) {
-	z = x + y
-	return
+func multiply(x int, y int) int {
+	return x * y
 }
 
-func add3(x, y int, firstName, lastName string) (int, string) {
-	var z int = x + y
-	var fullName = firstName + " " + lastName
-
-	return z, fullName
+func display(message string) {
+	fmt.Println(message)
 }
