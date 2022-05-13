@@ -1,6 +1,6 @@
-package main
+package computation
 
-func factorial(n int) int {
+func Factorial(n int) int {
 	var result = 1
 
 	for i := 1; i <= n; i++ {

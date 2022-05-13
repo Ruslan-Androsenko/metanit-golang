@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"hello/computation"
+)
 
 func main() {
-	fmt.Println(factorial(4))
-	fmt.Println(factorial(5))
+	fmt.Println(computation.Factorial(4))
+	fmt.Println(computation.Factorial(5))
 }
