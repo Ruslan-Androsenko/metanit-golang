@@ -2,47 +2,34 @@ package main
 
 import "fmt"
 
-type Reader interface {
-	read()
+type Vehicle interface {
+	move()
 }
 
-type Writer interface {
-	write(string)
+type Car struct {
+	model string
 }
 
-type ReaderWriter interface {
-	Reader
-	Writer
+type Aircraft struct {
+	model string
 }
 
-func writeToStream(writer ReaderWriter, text string) {
-	writer.write(text)
+func (c Car) move() {
+	fmt.Println(c.model, "едет")
 }
 
-func ReadFromStream(reader ReaderWriter) {
-	reader.read()
-}
-
-// структура файл
-type File struct {
-	text string
-}
-
-// реализация методов типа *File
-func (f *File) read() {
-	fmt.Println(f.text)
-}
-
-func (f *File) write(message string) {
-	f.text = message
-	fmt.Println("Запись в файл строки", message)
+func (a Aircraft) move() {
+	fmt.Println(a.model, "летит")
 }
 
 func main() {
-	myFile := &File{}
-	writeToStream(myFile, "hello world")
-	ReadFromStream(myFile)
+	tesla := Car{model: "Tesla"}
+	volvo := Car{model: "Volvo"}
+	boeing := Aircraft{model: "Boeing"}
 
-	writeToStream(myFile, "lolly bomb")
-	ReadFromStream(myFile)
+	vechicles := [...]Vehicle{tesla, volvo, boeing}
+
+	for _, vechicle := range vechicles {
+		vechicle.move()
+	}
 }
