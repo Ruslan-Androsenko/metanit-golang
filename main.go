@@ -2,18 +2,20 @@ package main
 
 import "fmt"
 
-type Stream interface {
-	read() string
+type Reader interface {
+	read()
+}
+
+type Writer interface {
 	write(string)
-	close()
 }
 
-func writeToStream(stream Stream, text string) {
-	stream.write(text)
+func writeToStream(writer Writer, text string) {
+	writer.write(text)
 }
 
-func closeStream(stream Stream) {
-	stream.close()
+func ReadFromStream(reader Reader) {
+	reader.read()
 }
 
 // структура файл
@@ -21,12 +23,9 @@ type File struct {
 	text string
 }
 
-// структура папка
-type Folder struct{}
-
 // реализация методов типа *File
-func (f *File) read() string {
-	return f.text
+func (f *File) read() {
+	fmt.Println(f.text)
 }
 
 func (f *File) write(message string) {
@@ -34,25 +33,8 @@ func (f *File) write(message string) {
 	fmt.Println("Запись в файл строки", message)
 }
 
-func (f *File) close() {
-	fmt.Println("Файл закрыт")
-}
-
-// реализация методов для типа *Folder
-func (f *Folder) close() {
-	fmt.Println("Папка закрыта")
-}
-
 func main() {
 	myFile := &File{}
-	myFolder := &Folder{}
-
 	writeToStream(myFile, "hello world")
-	closeStream(myFile)
-
-	//closeStream(myFolder) // Ошибка: тип *Folder не реализует интерфейс Stream
-	myFolder.close() // Так можно
-
-	//myFile2 := File{}
-	//closeStream(myFile2)	// ! Ошибка: тип File не соответствует интерфейсу Stream
+	ReadFromStream(myFile)
 }
