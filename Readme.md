@@ -27,4 +27,5 @@ go build hello.go
 
 ### Глава 6. Интерфейсы
 * [Введение в интерфейсы](https://metanit.com/go/tutorial/6.1.php)
+* [Соответствие интерфейсу](https://metanit.com/go/tutorial/6.2.php)
 

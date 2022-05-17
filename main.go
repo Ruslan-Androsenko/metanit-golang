@@ -2,32 +2,57 @@ package main
 
 import "fmt"
 
-type Vehicle interface {
-	move()
+type Stream interface {
+	read() string
+	write(string)
+	close()
 }
 
-func drive(vehicle Vehicle) {
-	vehicle.move()
+func writeToStream(stream Stream, text string) {
+	stream.write(text)
 }
 
-// структура "Автомобиль"
-type Car struct{}
-
-// струкрура "Самолет"
-type Aircraft struct{}
-
-func (c Car) move() {
-	fmt.Println("Автомобиль едет")
+func closeStream(stream Stream) {
+	stream.close()
 }
 
-func (a Aircraft) move() {
-	fmt.Println("Самолет летит")
+// структура файл
+type File struct {
+	text string
+}
+
+// структура папка
+type Folder struct{}
+
+// реализация методов типа *File
+func (f *File) read() string {
+	return f.text
+}
+
+func (f *File) write(message string) {
+	f.text = message
+	fmt.Println("Запись в файл строки", message)
+}
+
+func (f *File) close() {
+	fmt.Println("Файл закрыт")
+}
+
+// реализация методов для типа *Folder
+func (f *Folder) close() {
+	fmt.Println("Папка закрыта")
 }
 
 func main() {
-	tesla := Car{}
-	boeing := Aircraft{}
+	myFile := &File{}
+	myFolder := &Folder{}
 
-	drive(tesla)
-	drive(boeing)
+	writeToStream(myFile, "hello world")
+	closeStream(myFile)
+
+	//closeStream(myFolder) // Ошибка: тип *Folder не реализует интерфейс Stream
+	myFolder.close() // Так можно
+
+	//myFile2 := File{}
+	//closeStream(myFile2)	// ! Ошибка: тип File не соответствует интерфейсу Stream
 }
