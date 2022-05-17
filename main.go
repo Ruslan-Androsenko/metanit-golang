@@ -10,11 +10,16 @@ type Writer interface {
 	write(string)
 }
 
-func writeToStream(writer Writer, text string) {
+type ReaderWriter interface {
+	Reader
+	Writer
+}
+
+func writeToStream(writer ReaderWriter, text string) {
 	writer.write(text)
 }
 
-func ReadFromStream(reader Reader) {
+func ReadFromStream(reader ReaderWriter) {
 	reader.read()
 }
 
@@ -36,5 +41,8 @@ func (f *File) write(message string) {
 func main() {
 	myFile := &File{}
 	writeToStream(myFile, "hello world")
+	ReadFromStream(myFile)
+
+	writeToStream(myFile, "lolly bomb")
 	ReadFromStream(myFile)
 }
