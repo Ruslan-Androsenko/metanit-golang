@@ -3,35 +3,25 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
-var counter int = 0 // общий ресурс
-
 func main() {
-	ch := make(chan bool) // канал
-	var mutex sync.Mutex  // определяем мьютекс
+	var wg sync.WaitGroup
+	wg.Add(2) // в группе две горутины
 
-	for i := 1; i < 5; i++ {
-		go work(i, ch, &mutex)
+	work := func(id int) {
+		defer wg.Done()
+
+		fmt.Printf("Горутина %d начала выполнение \n", id)
+		time.Sleep(2 * time.Second)
+		fmt.Printf("Горутина %d завершила выполнение \n", id)
 	}
 
-	// ожидаем завершения всех горутин
-	for i := 1; i < 5; i++ {
-		<-ch
-	}
+	// вызываем горутины
+	go work(1)
+	go work(2)
 
-	fmt.Println("The End")
-}
-
-func work(number int, ch chan bool, mutex *sync.Mutex) {
-	mutex.Lock() // блокируем доступ к переменной counter
-	counter = 0
-
-	for k := 1; k <= 5; k++ {
-		counter++
-		fmt.Println("Goroutine", number, "-", counter)
-	}
-
-	mutex.Unlock() // деблокируем доступ
-	ch <- true
+	wg.Wait() // ожидаем завершения обоих горутин
+	fmt.Println("Горутины завершили выполнение")
 }

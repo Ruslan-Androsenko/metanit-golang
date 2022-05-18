@@ -32,4 +32,5 @@ go build hello.go
 * [Синхронизация](https://metanit.com/go/tutorial/7.4.php)
 * [Передача потоков данных](https://metanit.com/go/tutorial/7.5.php)
 * [Мьютексы](https://metanit.com/go/tutorial/7.6.php)
+* [WaitGroup](https://metanit.com/go/tutorial/7.7.php)
 
