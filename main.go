@@ -3,30 +3,18 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Start")
+	intCh := make(chan int, 3)
+	intCh <- 10
+	intCh <- 3
+	close(intCh) // канал закрыт
 
-	// Создание канала и получение из него данных
-	fmt.Println(<-createChan(5)) // 5
-	fmt.Println("The End")
-}
+	//intCh <- 24 // ошибка - канал уже закрыт
 
-func createChan(n int) chan int {
-	ch := make(chan int) // создаем канал
-
-	go func() {
-		ch <- n // отправляем данные в канал
-	}() // запускаем горутину
-
-	return ch // возврщаем канал
-}
-
-func factorial(n int, ch chan<- int) {
-	result := 1
-
-	for i := 1; i <= n; i++ {
-		result *= i
+	for i := 0; i < cap(intCh); i++ {
+		if val, opened := <-intCh; opened {
+			fmt.Println("val:", val)
+		} else {
+			fmt.Println("Channel closed!")
+		}
 	}
-
-	fmt.Println(n, "-", result)
-	ch <- result // отправка данных в канал
 }

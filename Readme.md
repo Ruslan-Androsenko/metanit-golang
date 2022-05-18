@@ -28,4 +28,5 @@ go build hello.go
 ### Глава 7. Параллельное программирование 
 * [Горутины](https://metanit.com/go/tutorial/7.1.php)
 * [Каналы](https://metanit.com/go/tutorial/7.2.php)
+* [Закрытие канала](https://metanit.com/go/tutorial/7.3.php)
 
