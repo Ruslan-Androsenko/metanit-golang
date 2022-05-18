@@ -3,23 +3,19 @@ package main
 import "fmt"
 
 func main() {
-	intCh := make(chan int)
+	intCh := make(chan int, 3)
+	intCh <- 10
+	fmt.Println("length:", len(intCh)) // 1
+	intCh <- 3
+	intCh <- 24
+	//intCh <- 15	// блокировка - функций main ждет, когда освободится место в канале
 
-	/*
-		go func() {
-			fmt.Println("Go routine starts")
-			intCh <- 5 // блокировка, пока данные не будут получены функцией main
-		}()
-	*/
+	fmt.Println("\nintCh:", <-intCh) // 10
+	fmt.Println("intCh:", <-intCh)   // 3
+	fmt.Println("intCh:", <-intCh)   // 24
 
-	go factorial(5, intCh) // вызов горутины
-
-	fmt.Println("intCh:", <-intCh) // получение данных из канала
-	fmt.Println("The End")
-
-	//intCh2 := make(chan int)
-	//intCh2 <- 10	// функция main блокируется
-	//fmt.Println("intCh2:", <-intCh2)
+	fmt.Println("\ncapacity:", cap(intCh)) // 3
+	fmt.Println("length:", len(intCh))
 }
 
 func factorial(n int, ch chan int) {
