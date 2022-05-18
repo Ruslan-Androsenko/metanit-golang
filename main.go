@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	text := "Hello Gold!"
-	file, err := os.Create("hello.txt") // создаем файл
+	data := []byte("Hello Bold!")
+	file, err := os.Create("hello.bin")
 
 	if err != nil { // если возникла ошибка
 		fmt.Println("Unable to create file:", err)
@@ -15,7 +15,7 @@ func main() {
 	}
 
 	defer file.Close()
-	file.WriteString(text)
+	file.Write(data)
 
 	fmt.Println("Done.")
 }
