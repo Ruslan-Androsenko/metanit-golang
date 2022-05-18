@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	text := "Hello Gold!"
 	file, err := os.Create("hello.txt") // создаем файл
 
 	if err != nil { // если возникла ошибка
@@ -13,6 +14,8 @@ func main() {
 		os.Exit(1) // выходим из программы
 	}
 
-	defer file.Close()       // закрываем файл
-	fmt.Println(file.Name()) // hello.txt
+	defer file.Close()
+	file.WriteString(text)
+
+	fmt.Println("Done.")
 }
