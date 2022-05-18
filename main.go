@@ -1,35 +1,37 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
+
+var counter int = 0 // общий ресурс
 
 func main() {
-	intCh := make(chan int)
-	go factorial(7, intCh)
+	ch := make(chan bool) // канал
+	var mutex sync.Mutex  // определяем мьютекс
 
-	/*
-		// получение данных из потока с помощью бесконечного цикла
-		for {
-			// получаем данные из потока
-			if num, opened := <-intCh; opened {
-				fmt.Println(num)
-			} else {
-				break // если поток закрыт, выход из цикла
-			}
-		}
-	*/
-
-	// получение данных из потока с помощью другой формы цикла
-	for num := range intCh {
-		fmt.Println(num)
+	for i := 1; i < 5; i++ {
+		go work(i, ch, &mutex)
 	}
+
+	// ожидаем завершения всех горутин
+	for i := 1; i < 5; i++ {
+		<-ch
+	}
+
+	fmt.Println("The End")
 }
 
-func factorial(n int, ch chan int) {
-	defer close(ch)
-	result := 1
+func work(number int, ch chan bool, mutex *sync.Mutex) {
+	mutex.Lock() // блокируем доступ к переменной counter
+	counter = 0
 
-	for i := 1; i <= n; i++ {
-		result *= i
-		ch <- result // посылаем по числу
+	for k := 1; k <= 5; k++ {
+		counter++
+		fmt.Println("Goroutine", number, "-", counter)
 	}
+
+	mutex.Unlock() // деблокируем доступ
+	ch <- true
 }

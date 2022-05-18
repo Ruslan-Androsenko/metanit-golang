@@ -31,4 +31,5 @@ go build hello.go
 * [Закрытие канала](https://metanit.com/go/tutorial/7.3.php)
 * [Синхронизация](https://metanit.com/go/tutorial/7.4.php)
 * [Передача потоков данных](https://metanit.com/go/tutorial/7.5.php)
+* [Мьютексы](https://metanit.com/go/tutorial/7.6.php)
 
