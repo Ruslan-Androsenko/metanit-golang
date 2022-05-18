@@ -3,14 +3,21 @@ package main
 import "fmt"
 
 func main() {
-	//var inCh chan<- int  // Канал только для отправки данных
-	//var outCh <-chan int // Канал только для получения данных
+	fmt.Println("Start")
 
-	intCh := make(chan int, 2)
-	go factorial(5, intCh)
-
-	fmt.Println("intCh:", <-intCh)
+	// Создание канала и получение из него данных
+	fmt.Println(<-createChan(5)) // 5
 	fmt.Println("The End")
+}
+
+func createChan(n int) chan int {
+	ch := make(chan int) // создаем канал
+
+	go func() {
+		ch <- n // отправляем данные в канал
+	}() // запускаем горутину
+
+	return ch // возврщаем канал
 }
 
 func factorial(n int, ch chan<- int) {
