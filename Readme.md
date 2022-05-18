@@ -27,4 +27,5 @@ go build hello.go
 
 ### Глава 8. Потоки и файлы
 * [Операции ввода-вывода. Reader и Writer](https://metanit.com/go/tutorial/8.1.php)
+* [Создание и открытие файлов](https://metanit.com/go/tutorial/8.2.php)
 
