@@ -29,4 +29,5 @@ go build hello.go
 * [Горутины](https://metanit.com/go/tutorial/7.1.php)
 * [Каналы](https://metanit.com/go/tutorial/7.2.php)
 * [Закрытие канала](https://metanit.com/go/tutorial/7.3.php)
+* [Синхронизация](https://metanit.com/go/tutorial/7.4.php)
 

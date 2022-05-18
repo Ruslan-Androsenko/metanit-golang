@@ -3,18 +3,23 @@ package main
 import "fmt"
 
 func main() {
-	intCh := make(chan int, 3)
-	intCh <- 10
-	intCh <- 3
-	close(intCh) // канал закрыт
+	results := make(map[int]int)
+	structCh := make(chan struct{})
 
-	//intCh <- 24 // ошибка - канал уже закрыт
+	go factorial(5, structCh, results)
+	<-structCh // Ожидаем закрытия канала structCh
 
-	for i := 0; i < cap(intCh); i++ {
-		if val, opened := <-intCh; opened {
-			fmt.Println("val:", val)
-		} else {
-			fmt.Println("Channel closed!")
-		}
+	for i, v := range results {
+		fmt.Println(i, " - ", v)
+	}
+}
+
+func factorial(n int, ch chan struct{}, results map[int]int) {
+	defer close(ch) // Закрываем канал после завершения горутины
+	result := 1
+
+	for i := 1; i <= n; i++ {
+		result *= i
+		results[i] = result
 	}
 }
