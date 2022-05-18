@@ -3,13 +3,32 @@ package main
 import "fmt"
 
 func main() {
-	var intCh chan int = make(chan int) // канал для данных типа int
-	strCh := make(chan string)          // канал для данных типа string
+	intCh := make(chan int)
 
-	intCh <- 5     // отправка данных  в канал
-	val := <-intCh // получение данных из канала
+	/*
+		go func() {
+			fmt.Println("Go routine starts")
+			intCh <- 5 // блокировка, пока данные не будут получены функцией main
+		}()
+	*/
 
-	fmt.Println("val:", val)
-	fmt.Println("intCh:", intCh)
-	fmt.Println("strCh:", strCh)
+	go factorial(5, intCh) // вызов горутины
+
+	fmt.Println("intCh:", <-intCh) // получение данных из канала
+	fmt.Println("The End")
+
+	//intCh2 := make(chan int)
+	//intCh2 <- 10	// функция main блокируется
+	//fmt.Println("intCh2:", <-intCh2)
+}
+
+func factorial(n int, ch chan int) {
+	result := 1
+
+	for i := 1; i <= n; i++ {
+		result *= i
+	}
+
+	fmt.Println(n, "-", result)
+	ch <- result // отправка данных в канал
 }
