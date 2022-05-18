@@ -3,22 +3,17 @@ package main
 import "fmt"
 
 func main() {
-	intCh := make(chan int, 3)
-	intCh <- 10
-	fmt.Println("length:", len(intCh)) // 1
-	intCh <- 3
-	intCh <- 24
-	//intCh <- 15	// блокировка - функций main ждет, когда освободится место в канале
+	//var inCh chan<- int  // Канал только для отправки данных
+	//var outCh <-chan int // Канал только для получения данных
 
-	fmt.Println("\nintCh:", <-intCh) // 10
-	fmt.Println("intCh:", <-intCh)   // 3
-	fmt.Println("intCh:", <-intCh)   // 24
+	intCh := make(chan int, 2)
+	go factorial(5, intCh)
 
-	fmt.Println("\ncapacity:", cap(intCh)) // 3
-	fmt.Println("length:", len(intCh))
+	fmt.Println("intCh:", <-intCh)
+	fmt.Println("The End")
 }
 
-func factorial(n int, ch chan int) {
+func factorial(n int, ch chan<- int) {
 	result := 1
 
 	for i := 1; i <= n; i++ {
