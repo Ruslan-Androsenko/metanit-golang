@@ -5,8 +5,20 @@ import (
 	"os"
 )
 
+type person struct {
+	name   string
+	age    int32
+	weight float64
+}
+
 func main() {
-	file, err := os.Create("confeve.txt")
+	tom := person{
+		name:   "Tom",
+		age:    24,
+		weight: 68.5,
+	}
+
+	file, err := os.Create("person.dat")
 
 	if err != nil {
 		fmt.Println(err)
@@ -14,6 +26,6 @@ func main() {
 	}
 
 	defer file.Close()
-	fmt.Fprint(file, "Сегодня ")
-	fmt.Fprintln(file, "хорошая погода")
+
+	fmt.Fprintf(file, "%-10s %-10d %-10.3f\n", tom.name, tom.age, tom.weight)
 }
