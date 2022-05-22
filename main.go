@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -12,17 +13,17 @@ type person struct {
 }
 
 func main() {
-	fileName := "person.dat"
+	fileName := "people.dat"
 	writeData(fileName)
 	readData(fileName)
 }
 
 func writeData(fileName string) {
 	// начальные данные
-	tom := person{
-		name:   "Tom",
-		age:    24,
-		weight: 68.5,
+	var people = []person{
+		{name: "Tom", age: 24, weight: 68.5},
+		{name: "Bob", age: 25, weight: 64.2},
+		{name: "Sam", age: 27, weight: 73.6},
 	}
 
 	file, err := os.Create(fileName)
@@ -35,12 +36,16 @@ func writeData(fileName string) {
 	defer file.Close()
 
 	// сохраняем данные в файл
-	fmt.Fprintf(file, "%s %d %.2f\n", tom.name, tom.age, tom.weight)
+	for _, p := range people {
+		fmt.Fprintf(file, "%s %d %.2f\n", p.name, p.age, p.weight)
+	}
 }
 
 func readData(fileName string) {
-	// переменная для считывания данных
-	tom := person{}
+	// переменные для считывания данных
+	var name string
+	var age int
+	var weight float64
 
 	file, err := os.Open(fileName)
 
@@ -52,12 +57,18 @@ func readData(fileName string) {
 	defer file.Close()
 
 	// считывание данных из файла
-	_, err = fmt.Fscanf(file, "%s %d %f\n", &tom.name, &tom.age, &tom.weight)
+	for {
+		_, err = fmt.Fscanf(file, "%s %d %f\n", &name, &age, &weight)
 
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		if err != nil {
+			if err == io.EOF {
+				break
+			} else {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+		}
+
+		fmt.Printf("%-8s %-8d %-8.2f\n", name, age, weight)
 	}
-
-	fmt.Printf("%-8s %-8d %-8.2f\n", tom.name, tom.age, tom.weight)
 }
