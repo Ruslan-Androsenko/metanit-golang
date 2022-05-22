@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
 type person struct {
@@ -18,14 +17,7 @@ func main() {
 		weight: 68.5,
 	}
 
-	file, err := os.Create("person.dat")
-
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	defer file.Close()
-
-	fmt.Fprintf(file, "%-10s %-10d %-10.3f\n", tom.name, tom.age, tom.weight)
+	fmt.Printf("%-10s %-10d %-10.3f\n", tom.name, tom.age, tom.weight)
+	fmt.Print("Hello ")
+	fmt.Println("cold!")
 }
