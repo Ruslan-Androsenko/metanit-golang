@@ -39,10 +39,8 @@ func writeData(fileName string) {
 }
 
 func readData(fileName string) {
-	// переменные для считывания данных
-	var name string
-	var age int
-	var weight float64
+	// переменная для считывания данных
+	tom := person{}
 
 	file, err := os.Open(fileName)
 
@@ -54,12 +52,12 @@ func readData(fileName string) {
 	defer file.Close()
 
 	// считывание данных из файла
-	_, err = fmt.Fscanf(file, "%s %d %f\n", &name, &age, &weight)
+	_, err = fmt.Fscanf(file, "%s %d %f\n", &tom.name, &tom.age, &tom.weight)
 
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("%-8s %-8d %-8.2f\n", name, age, weight)
+	fmt.Printf("%-8s %-8d %-8.2f\n", tom.name, tom.age, tom.weight)
 }
