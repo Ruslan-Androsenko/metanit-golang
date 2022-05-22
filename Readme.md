@@ -34,4 +34,5 @@ go build hello.go
 * [Вывод на консоль](https://metanit.com/go/tutorial/8.6.php)
 * [Форматируемый ввод](https://metanit.com/go/tutorial/8.7.php)
 * [Чтение с консоли](https://metanit.com/go/tutorial/8.8.php)
+* [Буферизированный ввод-вывод](https://metanit.com/go/tutorial/8.9.php)
 

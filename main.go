@@ -1,27 +1,30 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 )
 
 func main() {
-	var name string
-	var age int
+	rows := []string{
+		"Hello Go!",
+		"Welcome to Golang",
+	}
 
-	fmt.Print("Введите имя: ")
-	fmt.Scan(&name)
+	file, err := os.Create("some.dat")
+	writer := bufio.NewWriter(file)
 
-	fmt.Print("Введите возраст: ")
-	fmt.Scan(&age)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
-	fmt.Println(name, age)
+	defer file.Close()
 
-	fmt.Print("Введите имя и возраст: ")
-	fmt.Scan(&name, &age)
-	fmt.Println(name, age)
-
-	// альтернативный вариант
-	//fmt.Println("Введите имя и возраст: ")
-	//fmt.Scanf("%s %d", &name, &age)
-	//fmt.Println(name, age)
+	for _, row := range rows {
+		writer.WriteString(row)  // запись строки
+		writer.WriteString("\n") // перевод строки
+	}
+	writer.Flush() // сбрасываем данные из буфера в файл
 }
