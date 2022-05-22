@@ -6,6 +6,21 @@ import (
 	"os"
 )
 
+type phoneReader string
+
+func (p phoneReader) Read(bs []byte) (int, error) {
+	count := 0
+
+	for i := 0; i < len(p); i++ {
+		if p[i] >= '0' && p[i] <= '9' {
+			bs[count] = p[i]
+			count++
+		}
+	}
+
+	return count, io.EOF
+}
+
 func main() {
 	file, err := os.Open("hello.txt")
 
@@ -15,17 +30,12 @@ func main() {
 	}
 
 	defer file.Close()
-	data := make([]byte, 64)
 
-	for {
-		n, err := file.Read(data)
+	io.Copy(os.Stdout, file)
+	fmt.Println()
 
-		if err == io.EOF { // если конец файла
-			break // выходим из цикла
-		}
-
-		fmt.Print(string(data[:n]))
-	}
+	phone1 := phoneReader("+1(234)567 90-10")
+	io.Copy(os.Stdout, phone1)
 
 	fmt.Println("\nDone.")
 }

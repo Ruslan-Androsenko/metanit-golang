@@ -29,4 +29,5 @@ go build hello.go
 * [Операции ввода-вывода. Reader и Writer](https://metanit.com/go/tutorial/8.1.php)
 * [Создание и открытие файлов](https://metanit.com/go/tutorial/8.2.php)
 * [Чтение и запись файлов](https://metanit.com/go/tutorial/8.3.php)
+* [Стандартные потоки ввода-вывода и io.Copy](https://metanit.com/go/tutorial/8.4.php)
 
