@@ -12,15 +12,18 @@ type person struct {
 }
 
 func main() {
-	fileName := "hello2.txt"
+	fileName := "person.dat"
 	writeData(fileName)
 	readData(fileName)
 }
 
 func writeData(fileName string) {
 	// начальные данные
-	var name string = "Tom"
-	var age int = 24
+	tom := person{
+		name:   "Tom",
+		age:    24,
+		weight: 68.5,
+	}
 
 	file, err := os.Create(fileName)
 
@@ -31,13 +34,15 @@ func writeData(fileName string) {
 
 	defer file.Close()
 
-	fmt.Fprintln(file, name)
-	fmt.Fprintln(file, age)
+	// сохраняем данные в файл
+	fmt.Fprintf(file, "%s %d %.2f\n", tom.name, tom.age, tom.weight)
 }
 
 func readData(fileName string) {
+	// переменные для считывания данных
 	var name string
 	var age int
+	var weight float64
 
 	file, err := os.Open(fileName)
 
@@ -48,7 +53,13 @@ func readData(fileName string) {
 
 	defer file.Close()
 
-	fmt.Fscanln(file, &name)
-	fmt.Fscanln(file, &age)
-	fmt.Println(name, age)
+	// считывание данных из файла
+	_, err = fmt.Fscanf(file, "%s %d %f\n", &name, &age, &weight)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("%-8s %-8d %-8.2f\n", name, age, weight)
 }
