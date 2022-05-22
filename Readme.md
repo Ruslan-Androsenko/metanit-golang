@@ -32,4 +32,5 @@ go build hello.go
 * [Стандартные потоки ввода-вывода и io.Copy](https://metanit.com/go/tutorial/8.4.php)
 * [Форматированный вывод](https://metanit.com/go/tutorial/8.5.php)
 * [Вывод на консоль](https://metanit.com/go/tutorial/8.6.php)
+* [Форматируемый ввод](https://metanit.com/go/tutorial/8.7.php)
 
