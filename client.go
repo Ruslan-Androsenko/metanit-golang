@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"net"
-	"os"
 )
 
 func main() {
@@ -16,6 +14,34 @@ func main() {
 	}
 	defer conn.Close()
 
-	io.Copy(os.Stdout, conn)
+	for {
+		var source string
+		fmt.Print("Введите слово: ")
+		_, err := fmt.Scanln(&source)
+
+		if err != nil {
+			fmt.Println("Некорректный ввод", err)
+			continue
+		}
+
+		// отправляем сообщение серверу
+		if n, err := conn.Write([]byte(source)); n == 0 || err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		// получаем ответ
+		fmt.Print("Перевод: ")
+		buff := make([]byte, 1024)
+		n, err := conn.Read(buff)
+
+		if err != nil {
+			break
+		}
+
+		fmt.Print(string(buff[0:n]))
+		fmt.Println()
+	}
+
 	fmt.Println("\nDone")
 }
