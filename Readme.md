@@ -29,4 +29,5 @@ go build hello.go
 * [Отправка запросов](https://metanit.com/go/tutorial/9.1.php)
 * [Сервер. Обработка подключений](https://metanit.com/go/tutorial/9.2.php)
 * [Взаимодействие клиента и сервера](https://metanit.com/go/tutorial/9.3.php)
+* [Установка таймаута](https://metanit.com/go/tutorial/9.4.php)
 
