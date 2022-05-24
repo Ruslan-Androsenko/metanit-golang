@@ -3,10 +3,20 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
-	resp, err := http.Get("https://google.com")
+	client := &http.Client{
+		Timeout: 6 * time.Second,
+	}
+	req, err := http.NewRequest("GET", "https://google.com", nil)
+
+	// добавляем заголовки
+	req.Header.Add("Accept", "text/html")     // добавляем заголовок Accept
+	req.Header.Add("User-Agent", "MSIE/15.0") // добавляем заголовок User-Agent
+
+	resp, err := client.Do(req)
 
 	if err != nil {
 		fmt.Println(err)
