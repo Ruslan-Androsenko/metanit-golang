@@ -2,27 +2,30 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"net"
-	"os"
+	"net/http"
 )
 
 func main() {
-	httpRequest := "GET / HTTP/1.1\n" +
-		"Host: golang.org\n\n"
-	conn, err := net.Dial("tcp", "golang.org:80")
+	resp, err := http.Get("https://google.com")
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	defer conn.Close()
+	defer resp.Body.Close()
 
-	if _, err = conn.Write([]byte(httpRequest)); err != nil {
-		fmt.Println(err)
-		return
+	for true {
+		bs := make([]byte, 1024)
+		n, err := resp.Body.Read(bs)
+		fmt.Println(string(bs[0:n]))
+
+		if n == 0 || err != nil {
+			break
+		}
 	}
 
-	io.Copy(os.Stdout, conn)
+	// Еще можно использовать сокращенную версию без цикла
+	//io.Copy(os.Stdout, resp.Body)
+
 	fmt.Println("Done")
 }
