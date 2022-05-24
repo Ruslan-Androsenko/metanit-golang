@@ -27,4 +27,5 @@ go build hello.go
 
 ### Глава 9. Сетевое программирование 
 * [Отправка запросов](https://metanit.com/go/tutorial/9.1.php)
+* [Сервер. Обработка подключений](https://metanit.com/go/tutorial/9.2.php)
 
