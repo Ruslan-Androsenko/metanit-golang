@@ -27,4 +27,5 @@ go build hello.go
 
 ### Глава 10. Базы данных
 * [Работа с реляционными базами данных](https://metanit.com/go/tutorial/10.1.php)
+* [MySQL](https://metanit.com/go/tutorial/10.2.php)
 
