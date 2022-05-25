@@ -6,6 +6,13 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+type product struct {
+	id      int
+	model   string
+	company string
+	price   int
+}
+
 func main() {
 	db, err := sql.Open("mysql", "root:root@/productdb")
 
@@ -14,7 +21,8 @@ func main() {
 	}
 	defer db.Close()
 
-	addingData(db)
+	// addingData(db)
+	gettingData(db)
 }
 
 func addingData(db *sql.DB) {
@@ -26,4 +34,42 @@ func addingData(db *sql.DB) {
 
 	fmt.Println(result.LastInsertId()) // id добавленного объекта
 	fmt.Println(result.RowsAffected()) // количество затронутых строк
+}
+
+func gettingData(db *sql.DB) {
+	rows, err := db.Query("select * from productdb.products")
+
+	if err != nil {
+		panic(err)
+	}
+	defer rows.Close()
+
+	products := []product{}
+
+	for rows.Next() {
+		p := product{}
+		err := rows.Scan(&p.id, &p.model, &p.company, &p.price)
+
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+
+		products = append(products, p)
+	}
+
+	for _, p := range products {
+		fmt.Println(p.id, p.model, p.company, p.price)
+	}
+
+	row := db.QueryRow("select * from productdb.products where id = ?", 2)
+	prod := product{}
+	err = row.Scan(&prod.id, &prod.model, &prod.company, &prod.price)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println()
+	fmt.Println(prod.id, prod.model, prod.company, prod.price)
 }
