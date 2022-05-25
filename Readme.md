@@ -29,4 +29,5 @@ go build hello.go
 * [Работа с реляционными базами данных](https://metanit.com/go/tutorial/10.1.php)
 * [MySQL](https://metanit.com/go/tutorial/10.2.php)
 * [PostgreSQL](https://metanit.com/go/tutorial/10.3.php)
+* [SQLite](https://metanit.com/go/tutorial/10.4.php)
 

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type product struct {
@@ -15,8 +16,7 @@ type product struct {
 }
 
 func main() {
-	connStr := "user=postgres password=mypass dbname=productdb sslmode=disable"
-	db, err := sql.Open("postgres", connStr)
+	db, err := sql.Open("sqlite3", "store.db")
 
 	if err != nil {
 		panic(err)
@@ -36,14 +36,8 @@ func addingData(db *sql.DB) {
 		panic(err)
 	}
 
-	fmt.Println(result.LastInsertId()) // id не поддерживается
+	fmt.Println(result.LastInsertId()) // id последнего добавленного объекта
 	fmt.Println(result.RowsAffected()) // количество добавленных строк
-
-	// добавление записи в таблицу, с возвращением id-добавленной записи
-	var id int
-	db.QueryRow("insert into Products (model, company, price) values ('Mate 10 Pro', $1, $2) returning id",
-		"Huawei", 35000).Scan(&id)
-	fmt.Println(id)
 }
 
 func gettingData(db *sql.DB) {
