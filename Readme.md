@@ -25,6 +25,6 @@ go build hello.go
 
 # Изучаемые разделы учебника на Metanit.com
 
-### Глава 1. Введение в язык Go 
-* [Первая программа](https://metanit.com/go/tutorial/1.2.php)
+### Глава 10. Базы данных
+* [Работа с реляционными базами данных](https://metanit.com/go/tutorial/10.1.php)
 
