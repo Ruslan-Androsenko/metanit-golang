@@ -22,7 +22,8 @@ func main() {
 	defer db.Close()
 
 	// addingData(db)
-	gettingData(db)
+	// gettingData(db)
+	updateData(db)
 }
 
 func addingData(db *sql.DB) {
@@ -72,4 +73,16 @@ func gettingData(db *sql.DB) {
 
 	fmt.Println()
 	fmt.Println(prod.id, prod.model, prod.company, prod.price)
+}
+
+func updateData(db *sql.DB) {
+	// обновляем строку с id = 1
+	result, err := db.Exec("update productdb.products set price = ? where id = ?", 69000, 1)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(result.LastInsertId())
+	fmt.Println(result.RowsAffected())
 }
