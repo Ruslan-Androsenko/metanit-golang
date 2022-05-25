@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
 )
 
 type product struct {
@@ -14,7 +15,8 @@ type product struct {
 }
 
 func main() {
-	db, err := sql.Open("mysql", "root:root@/productdb")
+	connStr := "user=postgres password=mypass dbname=productdb sslmode=disable"
+	db, err := sql.Open("postgres", connStr)
 
 	if err != nil {
 		panic(err)
@@ -24,22 +26,28 @@ func main() {
 	// addingData(db)
 	// gettingData(db)
 	// updateData(db)
-	deleteData(db)
+	// deleteData(db)
 }
 
 func addingData(db *sql.DB) {
-	result, err := db.Exec("insert into productdb.products (model, company, price) values (?, ?, ?)", "iPhone X", "Apple", 72000)
+	result, err := db.Exec("insert into Products (model, company, price) values ('iPhone X', $1, $2)", "Apple", 72000)
 
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(result.LastInsertId()) // id добавленного объекта
-	fmt.Println(result.RowsAffected()) // количество затронутых строк
+	fmt.Println(result.LastInsertId()) // id не поддерживается
+	fmt.Println(result.RowsAffected()) // количество добавленных строк
+
+	// добавление записи в таблицу, с возвращением id-добавленной записи
+	var id int
+	db.QueryRow("insert into Products (model, company, price) values ('Mate 10 Pro', $1, $2) returning id",
+		"Huawei", 35000).Scan(&id)
+	fmt.Println(id)
 }
 
 func gettingData(db *sql.DB) {
-	rows, err := db.Query("select * from productdb.products")
+	rows, err := db.Query("select * from Products")
 
 	if err != nil {
 		panic(err)
@@ -64,7 +72,7 @@ func gettingData(db *sql.DB) {
 		fmt.Println(p.id, p.model, p.company, p.price)
 	}
 
-	row := db.QueryRow("select * from productdb.products where id = ?", 2)
+	row := db.QueryRow("select * from Products where id = $1", 2)
 	prod := product{}
 	err = row.Scan(&prod.id, &prod.model, &prod.company, &prod.price)
 
@@ -78,23 +86,21 @@ func gettingData(db *sql.DB) {
 
 func updateData(db *sql.DB) {
 	// обновляем строку с id = 1
-	result, err := db.Exec("update productdb.products set price = ? where id = ?", 69000, 1)
+	result, err := db.Exec("update Products set price = $1 where id = $2", 69000, 1)
 
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(result.LastInsertId())
-	fmt.Println(result.RowsAffected())
+	fmt.Println(result.RowsAffected()) // количество обновленных строк
 }
 
 func deleteData(db *sql.DB) {
-	result, err := db.Exec("delete from productdb.products where id = 1")
+	result, err := db.Exec("delete from Products where id = $1", 2)
 
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(result.LastInsertId()) // id последнего удаленного объекта
-	fmt.Println(result.RowsAffected()) // количество затронутых строк
+	fmt.Println(result.RowsAffected()) // количество удаленных строк
 }
