@@ -23,7 +23,8 @@ func main() {
 
 	// addingData(db)
 	// gettingData(db)
-	updateData(db)
+	// updateData(db)
+	deleteData(db)
 }
 
 func addingData(db *sql.DB) {
@@ -85,4 +86,15 @@ func updateData(db *sql.DB) {
 
 	fmt.Println(result.LastInsertId())
 	fmt.Println(result.RowsAffected())
+}
+
+func deleteData(db *sql.DB) {
+	result, err := db.Exec("delete from productdb.products where id = 1")
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(result.LastInsertId()) // id последнего удаленного объекта
+	fmt.Println(result.RowsAffected()) // количество затронутых строк
 }
